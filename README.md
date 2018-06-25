@@ -3,7 +3,10 @@ Tetris made in Python
 To run:
 -----------------
 From the tetris directory, run 
-	python main.py
+
+```bash
+ python main.py
+```
 
 Requirements:
 ----------------
