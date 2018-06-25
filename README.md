@@ -9,4 +9,5 @@ From the tetris directory, run
 Notes:
 ----------------
 -Requires pygame and numpy
+
 -Music from https://www.youtube.com/watch?v=o1qb4x0AVu8
