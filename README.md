@@ -9,7 +9,7 @@ From the tetris/tetris directory, run
  python main.py
 ```
 The unit tests:
-From the tetris/ directory directory, run 
+From the tetris/ directory, run 
 ```bash
  python -m unittest discover -v
 ```
