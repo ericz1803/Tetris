@@ -3,11 +3,19 @@ Tetris made in Python
 To run:
 -----------------
 From the tetris directory, run 
-	python main.py
 
+```bash
+ python main.py
+```
+
+Requirements:
+----------------
+* Python3
+* Numpy
+* Pygame
 
 Notes:
 ----------------
--Requires pygame and numpy
 
--Music from https://www.youtube.com/watch?v=o1qb4x0AVu8
+
+Music from https://www.youtube.com/watch?v=o1qb4x0AVu8
