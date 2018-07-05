@@ -2,10 +2,16 @@ Tetris made in Python
 ===================
 To run:
 -----------------
-From the tetris directory, run 
+The program:
+From the tetris/tetris directory, run 
 
 ```bash
  python main.py
+```
+The unit tests:
+From the tetris/ directory, run 
+```bash
+ python -m unittest discover -v
 ```
 
 Requirements:
