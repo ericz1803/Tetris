@@ -27,7 +27,7 @@ orange = (255, 133, 27)
 
 #draws board from a grid of numbers
 def draw_board(screen, board = np.zeros((10, 40))):
-	print(repr(board), '\n')
+	#print(repr(board), '\n')
 	assert(board.shape == (10,40))
 	show = board[:, 20:]
 	block_size = 30
@@ -49,17 +49,14 @@ def draw_board(screen, board = np.zeros((10, 40))):
 			#draw 10x20 grid of block_size x block_size squares with a 1 px border between each box
 			pygame.draw.rect(screen, colors[int(show[x,y]%10)], (x_margin + (block_size+border)*x, y_margin + (block_size+border)*y, block_size, block_size))
 
-	return None
-
-
 #displays fps in the top right corner
-def display_fps(screen, text_fps, fps):
-	text = text_fps.render('fps: ' + str(np.round(fps, 2)), False, (255,255,255))
+def display_fps(screen, fps):
+	text = pygame.font.SysFont('Arial', 11).render('fps: ' + str(np.round(fps, 2)), False, (255,255,255))
 	screen.blit(text, (screen.get_size()[0] - 50, 7))
 
-
+#side display showing the preview of the next piece
 def display_next_piece(screen, next_piece):
-		coords = (400, 350)
+		coords = (400, 450)
 		block_size = 30
 		#border between blocks
 		border = 1
@@ -74,7 +71,7 @@ def display_next_piece(screen, next_piece):
 
 		#text that says 'next piece'
 		font = pygame.font.SysFont('Arial', 24)
-		text = font.render('Next Piece:', False, (255,255,255))
+		text = font.render('Next Piece:', False, (255, 255, 255))
 		screen.blit(text, (coords[0], coords[1] - 35))
 
 		colors = [background_color, cyan, yellow, purple, green, red, blue, orange]
@@ -109,4 +106,50 @@ def display_next_piece(screen, next_piece):
 		#draw it so only the piece is visible
 		for x in range(4):
 			for y in range(2):
-				pygame.draw.rect(screen, colors[int(disp[x,y]%10)], (coords[0] + (block_size+border)*x, coords[1] + (block_size+border)*y, block_size, block_size))
+				pygame.draw.rect(screen, colors[int(disp[x,y]%10)], (coords[0] + (block_size + border) * x, coords[1] + (block_size + border) * y, block_size, block_size))
+
+#points scored for amount of lines at a level
+def points_for_clear(lines, level):
+	if lines == 0:
+		return 0
+
+	elif lines == 1:
+		return 100 * (level + 1)
+
+	elif lines == 2:
+		return 300 * (level + 1)
+
+	elif lines == 3:
+		return 500 * (level + 1)
+
+	elif lines == 4:
+		return 800 * (level + 1)
+
+#displays the current level
+def display_level(screen, level):
+	coords = (400, 250)
+	background_color = (0, 0, 0)
+	border_color = (255, 255, 255)
+	size = (100, 100)
+	border_thickness = 5
+	pygame.draw.rect(screen, border_color, (coords[0], coords[1], size[0], size[1]))
+	pygame.draw.rect(screen, background_color, (coords[0] + border_thickness, coords[1] + border_thickness, size[0] - 2 * border_thickness, size[1] - 2 * border_thickness))
+
+	level_text = pygame.font.SysFont('constantia', 32).render('Level:', False, (255,255,255))
+	level_num = pygame.font.SysFont('cambria', 32).render(str(level), False, (255,255,255))
+
+	screen.blit(level_text, (coords[0] + border_thickness + 5, coords[1] + border_thickness + 5))
+	screen.blit(level_num, (coords[0] + border_thickness + 5, coords[1] + border_thickness + 50))
+
+def display_score(screen, score):
+	coords = (400, 100)
+	background_color = (0, 0, 0)
+	border_color = (255, 255, 255)
+	size = (100, 100)
+	border_thickness = 5
+	pygame.draw.rect(screen, border_color, (coords[0], coords[1], size[0], size[1]))
+	pygame.draw.rect(screen, background_color, (coords[0] + border_thickness, coords[1] + border_thickness, size[0] - 2 * border_thickness, size[1] - 2 * border_thickness))
+	score_text = pygame.font.SysFont('constantia', 32).render('Score:', False, (255,255,255))
+	score_num = pygame.font.SysFont('cambria', 32).render(str(score), False, (255,255,255))
+	screen.blit(score_text, (coords[0] + border_thickness + 5, coords[1] + border_thickness + 5))
+	screen.blit(score_num, (coords[0] + border_thickness + 5, coords[1] + border_thickness + 50))
